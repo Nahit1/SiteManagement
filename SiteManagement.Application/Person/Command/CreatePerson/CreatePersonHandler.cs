@@ -9,20 +9,20 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SiteManagement.Application.Apartment.Command.CreateApartment
+namespace SiteManagement.Application.Person.Command.CreatePerson
 {
-    public class CreateApartmentHandler
+    public class CreatePersonHandler
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public CreateApartmentDto CreateApartmentDto { get; set; }
+            public CreatePersonDto CreatePersonDto { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
-
             private readonly DataContext _context;
             private readonly IMapper _mapper;
+
             public Handler(DataContext context, IMapper mapper)
             {
                 _mapper = mapper;
@@ -30,32 +30,23 @@ namespace SiteManagement.Application.Apartment.Command.CreateApartment
             }
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
+                var person = _mapper.Map<Domain.Person>(request.CreatePersonDto);
+
                 var site = _context.Sites.Where(x => x.CellPhoneNumber == "55566633322").FirstOrDefault();
                 if (site == null) return Result<Unit>.Failure("There is No Site");
 
-                var block = await _context.Blocks.FindAsync(request.CreateApartmentDto.BlockId);
+                person.Site = site;
 
-                if(block == null) return Result<Unit>.Failure("There is No Block");
+                person.Active = true;
+                person.Created = DateTime.Now;
+                person.CreatedBy = "sistem";
+                person.Deleted = false;
 
-                var apartmentType = await _context.ApartmentTypes.FindAsync(request.CreateApartmentDto.ApartmentTypeId);
-
-                if (apartmentType == null) return Result<Unit>.Failure("There is No ApartmentType");
-
-                var apartment = _mapper.Map<Domain.Apartment>(request.CreateApartmentDto);
-
-                apartment.Active = true;
-                apartment.Created = DateTime.Now;
-                apartment.CreatedBy = "sistem";
-                apartment.Deleted = false;
-                apartment.ApartmentType = apartmentType;
-                apartment.Block = block;
-                apartment.Site = site;
-
-                _context.Apartments.Add(apartment);
+                _context.Persons.Add(person);
 
                 var result = await _context.SaveChangesAsync() > 0;
 
-                if (!result) return Result<Unit>.Failure("Failed to create Apartment");
+                if (!result) return Result<Unit>.Failure("Failed to create Person");
 
                 return Result<Unit>.Success(Unit.Value);
             }

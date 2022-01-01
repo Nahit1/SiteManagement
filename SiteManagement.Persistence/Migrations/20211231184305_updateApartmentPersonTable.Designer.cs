@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SiteManagement.Persistence;
 
 namespace SiteManagement.Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20211231184305_updateApartmentPersonTable")]
+    partial class updateApartmentPersonTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,6 +106,9 @@ namespace SiteManagement.Persistence.Migrations
                     b.Property<bool>("Deleted")
                         .HasColumnType("INTEGER");
 
+                    b.Property<Guid>("Id")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("TEXT");
 
@@ -113,7 +118,7 @@ namespace SiteManagement.Persistence.Migrations
                     b.Property<int>("OwnerShipStatus")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("Share")
+                    b.Property<int>("Share")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ApartmentId", "PersonId");
