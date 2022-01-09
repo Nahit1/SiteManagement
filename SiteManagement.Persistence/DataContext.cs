@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SiteManagement.Domain;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SiteManagement.Persistence
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<User>
     {
         public DataContext(DbContextOptions options) : base(options)
         {
@@ -23,6 +25,18 @@ namespace SiteManagement.Persistence
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+
+            base.OnModelCreating(builder);
+
+            builder.Entity<IdentityRole>()
+                .HasData(
+                    new IdentityRole { Name = "Member", NormalizedName="MEMBER"},
+                    new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" },
+                    new IdentityRole { Name = "SysAdmin", NormalizedName = "SYSADMIN" }
+                );
+
+
+
             builder.Entity<ApartmentPerson>(x => x.HasKey(aa => new { aa.ApartmentId, aa.PersonId }));
 
             builder.Entity<ApartmentPerson>()

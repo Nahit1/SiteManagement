@@ -26,7 +26,7 @@ namespace SiteManagement.Application.Block.Command.CreateBlock
             }
             public async Task<Result<CreateBlockResponseDto>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var site = _context.Sites.Where(x => x.CellPhoneNumber == "55566633322").FirstOrDefault();
+                var site = _context.Sites.Where(x => x.Id == request.CreateBlockDto.SiteId).FirstOrDefault();
                 if (site == null) return Result<CreateBlockResponseDto>.Failure("There is No Site");
                 CreateBlockResponseDto vm = new CreateBlockResponseDto
                 {

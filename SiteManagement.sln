@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteManagement.Domain", "SiteManagement.Domain\SiteManagement.Domain.csproj", "{6FF9D0CB-CDEC-4029-85B1-1C2788527D71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiteManagement.Domain", "SiteManagement.Domain\SiteManagement.Domain.csproj", "{6FF9D0CB-CDEC-4029-85B1-1C2788527D71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteManagement.Persistence", "SiteManagement.Persistence\SiteManagement.Persistence.csproj", "{22627493-DF5D-456D-8697-CFAC4F6BA59A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiteManagement.Persistence", "SiteManagement.Persistence\SiteManagement.Persistence.csproj", "{22627493-DF5D-456D-8697-CFAC4F6BA59A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteManagement.Application", "SiteManagement.Application\SiteManagement.Application.csproj", "{0B139F06-88C3-4610-B2DE-C1DEFC628450}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiteManagement.Application", "SiteManagement.Application\SiteManagement.Application.csproj", "{0B139F06-88C3-4610-B2DE-C1DEFC628450}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteManagement.API", "SiteManagement.API\SiteManagement.API.csproj", "{E2EEECAC-2B17-426C-8479-579D01B9E6C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiteManagement.API", "SiteManagement.API\SiteManagement.API.csproj", "{E2EEECAC-2B17-426C-8479-579D01B9E6C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteManagement.Infrastructure", "SiteManagement.Infrastructure\SiteManagement.Infrastructure.csproj", "{D442E037-EADC-4CC3-A21F-DECFA3E3B9B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{E2EEECAC-2B17-426C-8479-579D01B9E6C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2EEECAC-2B17-426C-8479-579D01B9E6C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2EEECAC-2B17-426C-8479-579D01B9E6C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D442E037-EADC-4CC3-A21F-DECFA3E3B9B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D442E037-EADC-4CC3-A21F-DECFA3E3B9B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D442E037-EADC-4CC3-A21F-DECFA3E3B9B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D442E037-EADC-4CC3-A21F-DECFA3E3B9B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

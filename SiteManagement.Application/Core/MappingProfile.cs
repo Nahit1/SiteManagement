@@ -10,6 +10,7 @@ using SiteManagement.Application.Person.Command.CreatePerson;
 using SiteManagement.Application.Person.Queries.GetAllPerson;
 using SiteManagement.Application.Site.Command.CreateSite;
 using SiteManagement.Application.Site.Queries.GetAllSites;
+using SiteManagement.Application.Site.Queries.GetSite;
 
 namespace SiteManagement.Application.Core
 {
@@ -28,7 +29,7 @@ namespace SiteManagement.Application.Core
 
             CreateMap<CreateSiteDto, Domain.Site>();
             CreateMap<Domain.Site, GetAllSiteResponseDto>();
-
+            CreateMap<Domain.Site, GetSiteResponseDto>();
 
             CreateMap<CreatePersonDto, Domain.Person>();
             CreateMap<Domain.Person, GetAllPersonResponseDto>();
@@ -36,10 +37,11 @@ namespace SiteManagement.Application.Core
             CreateMap<CreateApartmentPersonDto, Domain.ApartmentPerson>();
             CreateMap<UpdateApartmentPersonDto, Domain.ApartmentPerson>();
 
+
+
+
+
             
-
-
-
 
         }
     }

@@ -1,0 +1,70 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <!-- <div class="add-task">
+      <button
+        type="button"
+        class="btn btn-primary btn-block"
+        (click)="createNewTodo('todo-sidebar-right', 'todo-sidebar-main')"
+        rippleEffect
+      >
+        Add Task
+      </button>
+    </div> -->
+    <div class="add-task mb-1">
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="createNewTodo('todo-sidebar-right', 'todo-sidebar-main')"
+        rippleEffect
+      >
+        Add Task
+      </button>
+    </div>
+    <!-- Table Basic -->
+    <div class="row" id="basic-table">
+      <div class="col-12">
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Blok Kodu</th>
+                  <th>Blok Adı</th>
+                  <th>İşlem</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let block of Blocks">
+                  <td>{{ block.code }}</td>
+                  <td>{{ block.name }}</td>
+                  <td class="overflow-hidden">
+                    <div ngbDropdown container="body">
+                      <button
+                        type="button"
+                        class="btn btn-sm hide-arrow"
+                        ngbDropdownToggle
+                        data-toggle="dropdown"
+                      >
+                        <i data-feather="more-vertical"></i>
+                      </button>
+                      <div ngbDropdownMenu>
+                        <a ngbDropdownItem href="javascript:void(0);"
+                          ><i data-feather="edit-2" class="mr-50"></i
+                          ><span>Edit</span></a
+                        ><a ngbDropdownItem href="javascript:void(0);"
+                          ><i data-feather="trash" class="mr-50"></i
+                          ><span>Delete</span></a
+                        >
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -15,7 +15,10 @@ namespace SiteManagement.Application.Site.Queries.GetAllSites
 {
     public class GetAllSiteHandler
     {
-        public class Query : IRequest<Result<List<GetAllSiteResponseDto>>> { }
+        public class Query : IRequest<Result<List<GetAllSiteResponseDto>>> 
+        {
+            public string UserId { get; set; }
+        }
 
         public class Handler : IRequestHandler<Query, Result<List<GetAllSiteResponseDto>>>
         {
@@ -28,7 +31,9 @@ namespace SiteManagement.Application.Site.Queries.GetAllSites
             }
             public async Task<Result<List<GetAllSiteResponseDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var sites = await _context.Sites.AsNoTracking()
+
+
+                var sites = await _context.Sites.Where(x=>x.Users.Any(u=>u.Id==request.UserId)).AsNoTracking()
                     .ProjectTo<GetAllSiteResponseDto>(_mapper.ConfigurationProvider)
                     .ToListAsync();
 

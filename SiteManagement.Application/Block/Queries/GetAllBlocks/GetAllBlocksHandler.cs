@@ -15,7 +15,10 @@ namespace SiteManagement.Application.Block.Queries.GetAllBlocks
 {
     public class GetAllBlocksHandler
     {
-        public class Query : IRequest<Result<List<GetAllBlocksResponseDto>>> { }
+        public class Query : IRequest<Result<List<GetAllBlocksResponseDto>>> 
+        {
+            public Guid SiteId { get; set; }
+        }
 
         public class Handler : IRequestHandler<Query, Result<List<GetAllBlocksResponseDto>>>
         {
@@ -28,7 +31,7 @@ namespace SiteManagement.Application.Block.Queries.GetAllBlocks
             }
             public async Task<Result<List<GetAllBlocksResponseDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var blocks = await _context.Blocks
+                var blocks = await _context.Blocks.Where(x=>x.SiteId == request.SiteId)
                     .ProjectTo<GetAllBlocksResponseDto>(_mapper.ConfigurationProvider)
                     .ToListAsync();
                 return Result<List<GetAllBlocksResponseDto>>.Success(blocks);

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SiteManagement.Application.Apartment.Command.CreateApartment;
 using SiteManagement.Application.Apartment.Command.UpdateApartment;
@@ -24,7 +25,7 @@ namespace SiteManagement.API.Controllers
         {
             return HandleResult(await Mediator.Send(new UpdateApartmentHandler.Command { UpdateApartmentDto = apartment }));
         }
-
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllApartments()
         {

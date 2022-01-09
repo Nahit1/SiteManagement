@@ -13,5 +13,7 @@ namespace SiteManagement.Application.Block.Command.CreateBlock
 
         [Required]
         public string Name { get; set; }
+
+        public Guid SiteId { get; set; }
     }
 }

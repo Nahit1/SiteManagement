@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SiteManagement.Application.Block.Command.CreateBlock;
 using SiteManagement.Application.Block.Command.UpdateBlock;
@@ -10,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace SiteManagement.API.Controllers
 {
-    
     public class BlockController : BaseController
     {
         [HttpPost]
@@ -25,10 +25,11 @@ namespace SiteManagement.API.Controllers
             return HandleResult(await Mediator.Send(new UpdateBlockHandler.Command { UpdateBlockDto = block }));
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllBlocks()
+        [Authorize]
+        [HttpGet("GetAllBlocks")]
+        public async Task<IActionResult> GetAllBlocks(Guid siteId)
         {
-            return HandleResult(await Mediator.Send(new GetAllBlocksHandler.Query()));
+            return HandleResult(await Mediator.Send(new GetAllBlocksHandler.Query { SiteId = siteId }));
         }
     }
 }

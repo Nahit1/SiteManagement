@@ -22,5 +22,6 @@ namespace SiteManagement.Domain
         public ICollection<Apartment> Apartments { get; set; }
         public ICollection<Block> Blocks { get; set; }
         public ICollection<Person> Persons { get; set; }
+        public ICollection<User> Users { get; set; }
     }
 }
